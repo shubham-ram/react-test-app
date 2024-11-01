@@ -28,7 +28,7 @@ function App() {
 				</button>
 				<p>This is shubham. testing Netlify deployement</p>
 				<p>
-					Skipping deployement by adding &quot;skip netlify&quot; in
+					Skipping deployement by adding &quot;[skip netlify]&quot; in
 					commit msg
 				</p>
 			</div>
