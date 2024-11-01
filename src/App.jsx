@@ -26,8 +26,7 @@ function App() {
 				<button onClick={() => setCount((count) => count + 1)}>
 					count is {count}
 				</button>
-				<p>This is shubham. testing vercel deployement</p>
-				<p>second commit to test CICD</p>
+				<p>This is shubham. testing Netlify deployement</p>
 			</div>
 			<p className="read-the-docs">
 				Click on the Vite and React logos to learn more
