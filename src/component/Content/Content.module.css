@@ -1,0 +1,46 @@
+.contentContainer {
+    padding: 2rem;
+    min-height: 70vh;
+    background-color: #f5f5f5;
+}
+
+.title {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.description {
+    line-height: 1.6;
+    color: #666;
+}
+
+.featuresContainer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.featureTitle {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.featureList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.featureItem {
+    padding: 0.5rem 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.featureItem:before {
+    content: "✓";
+    margin-right: 10px;
+    color: #4caf50;
+}

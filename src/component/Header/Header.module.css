@@ -1,0 +1,21 @@
+.headerContainer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navContainer {
+    margin-top: 1rem;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.navLink:hover {
+    opacity: 0.8;
+}

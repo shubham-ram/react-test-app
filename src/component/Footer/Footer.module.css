@@ -1,0 +1,20 @@
+.footerContainer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.copyright {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+}
