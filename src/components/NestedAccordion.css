@@ -1,0 +1,73 @@
+.accordion-item {
+  border-bottom: 1px solid #e0e0e0;
+  overflow: hidden;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+  background-color: #f0f0f0;
+}
+
+.accordion-header.active {
+  background-color: #e8f0fe;
+}
+
+.accordion-title {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.accordion-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.accordion-content-wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+.accordion-content-wrapper.open {
+  height: auto;
+}
+
+.accordion-content {
+  padding: 1rem;
+  background-color: #fff;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Nested styles */
+.accordion-item .accordion-item {
+  border-bottom: 1px solid #eee;
+}
+
+.accordion-item .accordion-header {
+  padding-left: 2rem; /* Indent nested headers */
+  background-color: #fff;
+}
+
+.accordion-item .accordion-item .accordion-header {
+  padding-left: 3rem; /* Indent deeper nested headers */
+}
+
+.accordion-item .accordion-header:hover {
+  background-color: #f5f5f5;
+}
