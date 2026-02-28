@@ -1,39 +1,89 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Profile from "./components/Profile";
+import Settings from "./components/Settings";
+import Interest from "./components/Interest";
+import TabForm from "./components/TabForm";
 
 function App() {
-	const [count, setCount] = useState(0);
+  const [formData, setFormData] = useState({});
+  console.log("formData >>", formData);
+  const onFormDataChangeHandler = ({ name, formField, value }) => {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [name]: {
+          ...prev[name],
+          [formField]: value,
+        },
+      };
+    });
+  };
 
-	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
+  const tabConfig = [
+    {
+      label: "Profile",
+      value: "profile",
+      component: Profile,
+      componentProps: {
+        data: formData?.profile,
+        onChangeHandler: onFormDataChangeHandler,
+      },
+      validate: () => {
+        let err = {};
+        if (!formData?.profile?.firstName) {
+          err.firstName = "First name is required";
+        }
+        if (!formData?.profile?.lastName) {
+          err.lastName = "Last name is required";
+        }
+        if (!formData?.profile?.email) {
+          err.email = "Email is required";
+        }
+        if (!formData?.profile?.phone) {
+          err.phone = "Phone is required";
+        }
+        return err;
+      },
+    },
+    {
+      label: "Settings",
+      value: "settings",
+      component: Settings,
+      componentProps: {
+        data: formData?.settings,
+        onChangeHandler: onFormDataChangeHandler,
+      },
+      validate: () => {
+        let err = {};
+        if (!formData?.settings?.theme) {
+          err.theme = "Theme is required";
+        }
+        return err;
+      },
+    },
+    {
+      label: "Interest",
+      value: "interest",
+      component: Interest,
+      componentProps: {
+        data: formData?.interest,
+        onChangeHandler: onFormDataChangeHandler,
+      },
+      validate: () => {
+        let err = {};
+        const interest = formData?.interest || {};
+        if (
+          Object.keys(interest).length === 0 ||
+          Object.values(interest).every((val) => !val)
+        ) {
+          err.interest = "Interest is required";
+        }
+        return err;
+      },
+    },
+  ];
 
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>This is shubham. testing vercel deployement</p>
-				<p>second commit to test CICD</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</>
-	);
+  return <TabForm tabConfig={tabConfig} />;
 }
 
 export default App;

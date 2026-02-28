@@ -1,0 +1,14 @@
+.optionContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.label {
+  font-size: 12px;
+}
+
+.error {
+  font-size: 10px;
+  color: red;
+  margin: 0;
+}

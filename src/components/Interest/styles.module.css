@@ -1,0 +1,15 @@
+.formRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.label {
+  font-size: 12px;
+}
+
+.error {
+  font-size: 10px;
+  color: red;
+  margin: 0;
+}
