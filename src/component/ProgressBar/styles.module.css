@@ -1,0 +1,28 @@
+.container {
+  border-radius: 50px;
+  border: 1px solid #333;
+  padding: 4px;
+  height: 16px;
+  width: 200px;
+}
+
+.progress {
+  width: 0px;
+  height: 100%;
+  background-color: green;
+}
+
+.fillProgressBar {
+  animation: fillBar 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fillBar {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

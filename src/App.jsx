@@ -1,39 +1,51 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+
+import ProgressBar from "./component/ProgressBar";
+import styles from "./styles.module.css";
+import { useEffect } from "react";
+import { useRef } from "react";
+
+const progressBarData = [
+  { id: 0, isFill: true },
+  { id: 1, isFill: false }, //{ id: 1, isFill: true },
+  { id: 2, isFill: false }, //{ id: 2, isFill: true },
+  { id: 3, isFill: false }, // { { id: 3, isFill: true }}
+];
 
 function App() {
-	const [count, setCount] = useState(0);
+  const [progressBar, setProgressBar] = useState(progressBarData);
 
-	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
+  const counter = useRef(0);
 
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>This is shubham. testing vercel deployement</p>
-				<p>second commit to test CICD</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</>
-	);
+  useEffect(() => {
+    let timeout = setInterval(() => {
+      if (counter.current + 1 === progressBar.length) {
+        clearInterval(timeout);
+        return;
+      }
+
+      setProgressBar((prev) => {
+        const updated = [...prev];
+        updated[counter.current].isFill = true;
+        return updated;
+      });
+      counter.current += 1;
+    }, 3000);
+
+    return () => clearInterval(timeout);
+  }, [progressBar.length]);
+
+  console.log("progressBar >", progressBar);
+
+  return (
+    <div className={styles.container}>
+      <button>Add ProgressBar</button>
+
+      {progressBar.map((ele, index) => {
+        return <ProgressBar key={ele.id} isFill={ele.isFill} />;
+      })}
+    </div>
+  );
 }
 
 export default App;
