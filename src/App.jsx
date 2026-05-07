@@ -1,39 +1,47 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { useRef } from "react";
+import SheetGrid from "./components/SheetGrid";
+import TabBar from "./components/TabBar";
+import { useSheets } from "./hooks/useSheets";
+import styles from "./App.module.css";
+import { SHEET_DATA_PREFIX } from "./constants";
+export default function App() {
+  const hotRef = useRef(null);
+  const {
+    sheets,
+    activeId,
+    activeIdRef,
+    switchSheet,
+    addSheet,
+    deleteSheet,
+    renameSheet,
+  } = useSheets(hotRef);
 
-function App() {
-	const [count, setCount] = useState(0);
+  return (
+    <div className={styles.root}>
+      <div className={styles.gridWrapper}>
+        <SheetGrid hotRef={hotRef} activeIdRef={activeIdRef} />
+      </div>
 
-	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
+      <TabBar
+        sheets={sheets}
+        activeId={activeId}
+        onSwitch={switchSheet}
+        onAdd={() => addSheet(sheets)}
+        onDelete={(id) => deleteSheet(id, sheets, activeId)}
+        onRename={(id, label) => renameSheet(id, label, sheets)}
+      />
 
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>This is shubham. testing vercel deployement</p>
-				<p>second commit to test CICD</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</>
-	);
+      <button
+        onClick={() => {
+          sheets.forEach((sheet, i) => {
+            const raw = localStorage.getItem(SHEET_DATA_PREFIX + sheet.id);
+            const data = raw ? JSON.parse(raw) : "";
+            console.log("data >>", i, data);
+          });
+        }}
+      >
+        get sheet data
+      </button>
+    </div>
+  );
 }
-
-export default App;
